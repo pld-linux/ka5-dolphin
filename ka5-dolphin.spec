@@ -1,18 +1,18 @@
-%define		kdeappsver	17.08.2
-%define		qtver		5.3.2
+%define		kdeappsver	18.12.0
+%define		qtver		5.9.0
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	17.08.2
+Version:	18.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	9c3382be01aac85e53fef5d523b51d1a
+# Source0-md5:	b69d59ae2de93fe9213acca858d6a83d
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	kf5-extra-cmake-modules >= 5.53.0
 BuildRequires:	kf5-kbookmarks-devel
 BuildRequires:	kf5-kcompletion-devel
 BuildRequires:	kf5-kconfig-devel
@@ -43,7 +43,25 @@ BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Dolphin - file manager.
+Dolphin is a lightweight file manager. It has been designed with ease
+of use and simplicity in mind, while still allowing flexibility and
+customisation. This means that you can do your file management exactly
+the way you want to do it.
+
+Features
+
+• Navigation (or breadcrumb) bar for URLs, allowing you to quickly 
+  navigate through the hierarchy of files and folders.
+• Supports
+  several different kinds of view styles and properties and allows you
+  to configure the view exactly how you want it.
+• Split view, allowing you to easily copy or move files between locations.
+• Additional information and shortcuts are available as dock-able panels,
+  allowing you to move them around freely and display exactly what you want.
+• Multiple tab support
+• Informational dialogues are displayed in an unobtrusive way.
+• Undo/redo support
+• Transparent network access through the KIO system.
 
 %description -l pl.UTF-8
 Dolphin - zarządca plików KDE.
@@ -87,6 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
+/etc/xdg/dolphin.categories
 /etc/xdg/servicemenu.knsrc
 %attr(755,root,root) %{_bindir}/dolphin
 %attr(755,root,root) %{_bindir}/servicemenudeinstallation
