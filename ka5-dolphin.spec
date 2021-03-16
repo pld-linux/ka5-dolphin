@@ -1,20 +1,21 @@
-%define		kdeappsver	19.04.1
-%define		kframever	5.56.0
+%define		kdeappsver	20.12.3
+%define		kframever	5.69.0
 %define		qtver		5.9.0
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	19.04.1
+Version:	20.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	924d655ebef64c518e3f61ca69bf7790
+Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	df78fecbd15cf7ab8252d20a3d97c2a1
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
 BuildRequires:	kf5-kbookmarks-devel >= %{kframever}
+BuildRequires:	kf5-kcmutils-devel >= %{kframever}
 BuildRequires:	kf5-kcompletion-devel >= %{kframever}
 BuildRequires:	kf5-kconfig-devel >= %{kframever}
 BuildRequires:	kf5-kconfigwidgets-devel >= %{kframever}
@@ -28,6 +29,7 @@ BuildRequires:	kf5-kiconthemes-devel >= %{kframever}
 BuildRequires:	kf5-kinit-devel >= %{kframever}
 BuildRequires:	kf5-kio-devel >= %{kframever}
 BuildRequires:	kf5-kitemmodels-devel >= %{kframever}
+BuildRequires:	kf5-knewstuff-devel >= %{kframever}
 BuildRequires:	kf5-knotifications-devel >= %{kframever}
 BuildRequires:	kf5-knotifyconfig-devel >= %{kframever}
 BuildRequires:	kf5-kparts-devel >= %{kframever}
@@ -40,6 +42,7 @@ BuildRequires:	kf5-kxmlgui-devel >= %{kframever}
 BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	ruby-test-unit
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,18 +55,16 @@ the way you want to do it.
 
 Features
 
-• Navigation (or breadcrumb) bar for URLs, allowing you to quickly 
-  navigate through the hierarchy of files and folders.
-• Supports
-  several different kinds of view styles and properties and allows you
-  to configure the view exactly how you want it.
-• Split view, allowing you to easily copy or move files between locations.
-• Additional information and shortcuts are available as dock-able panels,
-  allowing you to move them around freely and display exactly what you want.
-• Multiple tab support
-• Informational dialogues are displayed in an unobtrusive way.
-• Undo/redo support
-• Transparent network access through the KIO system.
+• Navigation (or breadcrumb) bar for URLs, allowing you to quickly
+navigate through the hierarchy of files and folders. • Supports
+several different kinds of view styles and properties and allows you
+to configure the view exactly how you want it. • Split view, allowing
+you to easily copy or move files between locations. • Additional
+information and shortcuts are available as dock-able panels, allowing
+you to move them around freely and display exactly what you want. •
+Multiple tab support • Informational dialogues are displayed in an
+unobtrusive way. • Undo/redo support • Transparent network access
+through the KIO system.
 
 %description -l pl.UTF-8
 Dolphin - zarządca plików KDE.
@@ -87,6 +88,8 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 %build
 install -d build
 cd build
+RUBYLIB=%{_datadir}/gems/gems/test-unit-3.2.3/lib
+export RUBYLIB
 %cmake \
 	-G Ninja \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
@@ -109,11 +112,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-/etc/xdg/dolphin.categories
-/etc/xdg/servicemenu.knsrc
 %attr(755,root,root) %{_bindir}/dolphin
-%attr(755,root,root) %{_bindir}/servicemenudeinstallation
-%attr(755,root,root) %{_bindir}/servicemenuinstallation
+%attr(755,root,root) %{_bindir}/servicemenuinstaller
 %ghost %{_libdir}/libdolphinprivate.so.5
 %{_libdir}/libdolphinprivate.so.5.*.*
 %ghost %{_libdir}/libdolphinvcs.so.5
@@ -140,6 +140,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/kcmdolphinviewmodes.desktop
 %{_datadir}/kservicetypes5/fileviewversioncontrolplugin.desktop
 %{_datadir}/metainfo/org.kde.dolphin.appdata.xml
+%{_datadir}/kglobalaccel/org.kde.dolphin.desktop
+%{_datadir}/qlogging-categories5/dolphin.categories
+%{_datadir}/knsrcfiles/servicemenu.knsrc
 
 %files devel
 %defattr(644,root,root,755)
