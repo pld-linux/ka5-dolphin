@@ -1,15 +1,15 @@
-%define		kdeappsver	21.04.1
+%define		kdeappsver	21.04.2
 %define		kframever	5.69.0
 %define		qtver		5.9.0
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	21.04.1
+Version:	21.04.2
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	666d53aaae8bf4444019ed3678ef3fa3
+# Source0-md5:	f3e117a568fb903701b8fd1b73901f5b
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -140,9 +140,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kglobalaccel/org.kde.dolphin.desktop
 %{_datadir}/qlogging-categories5/dolphin.categories
 %{_datadir}/knsrcfiles/servicemenu.knsrc
-%{systemduserunitdir}/plasma-dolphin.service
-%{_libdir}/qt5/plugins/kf5/parts/dolphinpart.so
-%{_datadir}/config.kcfg/dolphin_contextmenusettings.kcfg
 %{systemduserunitdir}/plasma-dolphin.service
 %{_libdir}/qt5/plugins/kf5/parts/dolphinpart.so
 %{_datadir}/config.kcfg/dolphin_contextmenusettings.kcfg
