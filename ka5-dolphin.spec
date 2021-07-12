@@ -67,6 +67,25 @@ unobtrusive way. • Undo/redo support • Transparent network access
 through the KIO system.
 
 %description -l pl.UTF-8
+Dolphin to lekki zarządca plików. Zaprojektowany jako łatwy w użyciu,
+choć zapewniający elastyczność i możliwości konfiguracji. To znaczy, że
+możesz go używać dokładnie, tak jakbyś chciał.
+
+Cechy
+
+• Pasek nawigacyjny dla URLi pozwalający na szybkie przemieszczanie się
+wśród hierarchi plików i folderów
+• Wspiera wiele różnych rodzajów przeglądania plików pozwalając skonfigurować
+podgląd tak jak sobie tego życzysz
+• Podzielony widok do łatwego kopiowania i przenoszenia plików między lokacjami
+• Dodatkowe informacje i skróty klawiszowe są dostępne jako dokowalne panele,
+pozwalając przemieszczać się do woli i wyświetlać to co chcesz
+• Wiele kart
+• Informacyjne okna dialogowe nie drażnią użytkownika
+• Wsparcie dla Cofnij/Powtórz
+• Przeźroczysty dostęp do sieci korzystający z systemu KIO.
+
+%description -l pl.UTF-8
 Dolphin - zarządca plików KDE.
 
 %package devel
