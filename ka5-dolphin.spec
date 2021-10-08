@@ -1,15 +1,15 @@
-%define		kdeappsver	21.08.1
+%define		kdeappsver	21.08.2
 %define		kframever	5.69.0
 %define		qtver		5.9.0
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	21.08.1
+Version:	21.08.2
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	858b12e9264202920bdbb16866418331
+# Source0-md5:	9b8604564e5ba6b7d8ba66afb85330c3
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
