@@ -1,15 +1,15 @@
-%define		kdeappsver	21.08.3
+%define		kdeappsver	21.12.0
 %define		kframever	5.69.0
 %define		qtver		5.9.0
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	21.08.3
+Version:	21.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	f78463798b06367e3b733066c8fae801
+# Source0-md5:	6ab0ed88af299be2680044bc1ab2bb20
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -68,25 +68,20 @@ through the KIO system.
 
 %description -l pl.UTF-8
 Dolphin to lekki zarządca plików. Zaprojektowany jako łatwy w użyciu,
-choć zapewniający elastyczność i możliwości konfiguracji. To znaczy, że
-możesz go używać dokładnie, tak jakbyś chciał.
+choć zapewniający elastyczność i możliwości konfiguracji. To znaczy,
+że możesz go używać dokładnie, tak jakbyś chciał.
 
 Cechy
 
-• Pasek nawigacyjny dla URLi pozwalający na szybkie przemieszczanie się
-wśród hierarchi plików i folderów
-• Wspiera wiele różnych rodzajów przeglądania plików pozwalając skonfigurować
-podgląd tak jak sobie tego życzysz
-• Podzielony widok do łatwego kopiowania i przenoszenia plików między lokacjami
-• Dodatkowe informacje i skróty klawiszowe są dostępne jako dokowalne panele,
-pozwalając przemieszczać się do woli i wyświetlać to co chcesz
-• Wiele kart
-• Informacyjne okna dialogowe nie drażnią użytkownika
-• Wsparcie dla Cofnij/Powtórz
-• Przeźroczysty dostęp do sieci korzystający z systemu KIO.
-
-%description -l pl.UTF-8
-Dolphin - zarządca plików KDE.
+• Pasek nawigacyjny dla URLi pozwalający na szybkie przemieszczanie
+się wśród hierarchi plików i folderów • Wspiera wiele różnych rodzajów
+przeglądania plików pozwalając skonfigurować podgląd tak jak sobie
+tego życzysz • Podzielony widok do łatwego kopiowania i przenoszenia
+plików między lokacjami • Dodatkowe informacje i skróty klawiszowe są
+dostępne jako dokowalne panele, pozwalając przemieszczać się do woli i
+wyświetlać to co chcesz • Wiele kart • Informacyjne okna dialogowe nie
+drażnią użytkownika • Wsparcie dla Cofnij/Powtórz • Przeźroczysty
+dostęp do sieci korzystający z systemu KIO.
 
 %package devel
 Summary:	Header files for %{kaname} development
@@ -137,9 +132,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libdolphinprivate.so.5.*.*
 %ghost %{_libdir}/libdolphinvcs.so.5
 %{_libdir}/libdolphinvcs.so.5.*.*
-%{_libdir}/qt5/plugins/kcm_dolphingeneral.so
-%{_libdir}/qt5/plugins/kcm_dolphinnavigation.so
-%{_libdir}/qt5/plugins/kcm_dolphinviewmodes.so
+%dir %{_libdir}/qt5/plugins/dolphin
+%dir %{_libdir}/qt5/plugins/dolphin/kcms
+%{_libdir}/qt5/plugins/dolphin/kcms/libkcm_dolphingeneral.so
+%{_libdir}/qt5/plugins/dolphin/kcms/libkcm_dolphinnavigation.so
+%{_libdir}/qt5/plugins/dolphin/kcms/libkcm_dolphinviewmodes.so
 %{_desktopdir}/org.kde.dolphin.desktop
 %{_datadir}/config.kcfg/dolphin_compactmodesettings.kcfg
 %{_datadir}/config.kcfg/dolphin_detailsmodesettings.kcfg
