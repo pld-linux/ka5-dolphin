@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.04.3
+%define		kdeappsver	22.08.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	22.04.3
+Version:	22.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	bd5e54d4002937ecd84d648faf31e06f
+# Source0-md5:	f4b09c70a0a7285079b4a3ae81240251
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -61,29 +61,31 @@ Features
 • Navigation (or breadcrumb) bar for URLs, allowing you to quickly
 navigate through the hierarchy of files and folders. • Supports
 several different kinds of view styles and properties and allows you
-to configure the view exactly how you want it. • Split view, allowing
-you to easily copy or move files between locations. • Additional
-information and shortcuts are available as dock-able panels, allowing
-you to move them around freely and display exactly what you want. •
-Multiple tab support • Informational dialogues are displayed in an
-unobtrusive way. • Undo/redo support • Transparent network access
-through the KIO system.
+to configure the view exactly how you want it. • Split view,
+allowing you to easily copy or move files between locations. •
+Additional information and shortcuts are available as dock-able
+panels, allowing you to move them around freely and display exactly
+what you want. • Multiple tab support • Informational dialogues
+are displayed in an unobtrusive way. • Undo/redo support •
+Transparent network access through the KIO system.
 
 %description -l pl.UTF-8
-Dolphin to lekki zarządca plików. Zaprojektowany jako łatwy w użyciu,
-choć zapewniający elastyczność i możliwości konfiguracji. To znaczy,
-że możesz go używać dokładnie, tak jakbyś chciał.
+Dolphin to lekki zarządca plików. Zaprojektowany jako łatwy w
+użyciu, choć zapewniający elastyczność i możliwości
+konfiguracji. To znaczy, że możesz go używać dokładnie, tak
+jakbyś chciał.
 
 Cechy
 
 • Pasek nawigacyjny dla URLi pozwalający na szybkie przemieszczanie
-się wśród hierarchi plików i folderów • Wspiera wiele różnych rodzajów
-przeglądania plików pozwalając skonfigurować podgląd tak jak sobie
-tego życzysz • Podzielony widok do łatwego kopiowania i przenoszenia
-plików między lokacjami • Dodatkowe informacje i skróty klawiszowe są
-dostępne jako dokowalne panele, pozwalając przemieszczać się do woli i
-wyświetlać to co chcesz • Wiele kart • Informacyjne okna dialogowe nie
-drażnią użytkownika • Wsparcie dla Cofnij/Powtórz • Przeźroczysty
+się wśród hierarchi plików i folderów • Wspiera wiele różnych
+rodzajów przeglądania plików pozwalając skonfigurować podgląd
+tak jak sobie tego życzysz • Podzielony widok do łatwego
+kopiowania i przenoszenia plików między lokacjami • Dodatkowe
+informacje i skróty klawiszowe są dostępne jako dokowalne panele,
+pozwalając przemieszczać się do woli i wyświetlać to co chcesz
+• Wiele kart • Informacyjne okna dialogowe nie drażnią
+użytkownika • Wsparcie dla Cofnij/Powtórz • Przeźroczysty
 dostęp do sieci korzystający z systemu KIO.
 
 %package devel
@@ -141,11 +143,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libdolphinprivate.so.5.*.*
 %ghost %{_libdir}/libdolphinvcs.so.5
 %{_libdir}/libdolphinvcs.so.5.*.*
-%dir %{_libdir}/qt5/plugins/dolphin
-%dir %{_libdir}/qt5/plugins/dolphin/kcms
-%{_libdir}/qt5/plugins/dolphin/kcms/libkcm_dolphingeneral.so
-%{_libdir}/qt5/plugins/dolphin/kcms/libkcm_dolphinnavigation.so
-%{_libdir}/qt5/plugins/dolphin/kcms/libkcm_dolphinviewmodes.so
 %{_desktopdir}/org.kde.dolphin.desktop
 %{_datadir}/config.kcfg/dolphin_compactmodesettings.kcfg
 %{_datadir}/config.kcfg/dolphin_detailsmodesettings.kcfg
@@ -156,9 +153,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/interfaces/org.freedesktop.FileManager1.xml
 %{_datadir}/dbus-1/services/org.kde.dolphin.FileManager1.service
 %{_datadir}/kservices5/dolphinpart.desktop
-%{_datadir}/kservices5/kcmdolphingeneral.desktop
-%{_datadir}/kservices5/kcmdolphinnavigation.desktop
-%{_datadir}/kservices5/kcmdolphinviewmodes.desktop
 %{_datadir}/kservicetypes5/fileviewversioncontrolplugin.desktop
 %{_datadir}/metainfo/org.kde.dolphin.appdata.xml
 %{_datadir}/kglobalaccel/org.kde.dolphin.desktop
@@ -167,6 +161,12 @@ rm -rf $RPM_BUILD_ROOT
 %{systemduserunitdir}/plasma-dolphin.service
 %{_libdir}/qt5/plugins/kf5/parts/dolphinpart.so
 %{_datadir}/config.kcfg/dolphin_contextmenusettings.kcfg
+%dir %{_libdir}/qt5/plugins/dolphin
+%dir %{_libdir}/qt5/plugins/dolphin/kcms
+%{_libdir}/qt5/plugins/dolphin/kcms/kcm_dolphingeneral.so
+%{_libdir}/qt5/plugins/dolphin/kcms/kcm_dolphinnavigation.so
+%{_libdir}/qt5/plugins/dolphin/kcms/kcm_dolphinviewmodes.so
+%{_datadir}/kconf_update/dolphin_detailsmodesettings.upd
 
 %files devel
 %defattr(644,root,root,755)
