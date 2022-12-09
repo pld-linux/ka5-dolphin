@@ -126,7 +126,8 @@ ctest
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
-rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{ie,sr}
+rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/sr
+rm -rf $RPM_BUILD_ROOT%{_localedir}/ie
 %find_lang %{kaname} --all-name --with-kde
 
 %clean
