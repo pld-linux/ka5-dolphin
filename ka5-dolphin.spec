@@ -1,21 +1,21 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	23.04.3
+%define		kdeappsver	23.08.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		dolphin
 Summary:	File manager
 Name:		ka5-%{kaname}
-Version:	23.04.3
+Version:	23.08.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	3f7fd2269d09463aeb1cbaaac3ca2d7b
+# Source0-md5:	6f5cc46b0ce2a4385d33b6fb101e84a5
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	cmake >= 3.20
 BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
 BuildRequires:	kf5-kbookmarks-devel >= %{kframever}
 BuildRequires:	kf5-kcmutils-devel >= %{kframever}
@@ -105,20 +105,18 @@ Pliki nagłówkowe dla programistów używających %{kaname}.
 %setup -q -n %{kaname}-%{version}
 
 %build
-install -d build
-cd build
 RUBYLIB=%{_datadir}/gems/gems/test-unit-3.2.3/lib
 export RUBYLIB
 %cmake \
+	-B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	..
-%ninja_build
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+%ninja_build -C build
 
 %if %{with tests}
-ctest
+ctest --test-dir build
 %endif
 
 
@@ -169,6 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/dolphin
 %{_datadir}/dolphin/dolphinpartactions.desktop
 %{zsh_compdir}/_dolphin
+%{_datadir}/config.kcfg/dolphin_contentdisplaysettings.kcfg
 
 %files devel
 %defattr(644,root,root,755)
